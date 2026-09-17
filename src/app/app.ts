@@ -1,35 +1,90 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
-interface Product {
+export interface Product {
   name: string;
   price: number;
   unit: string;
 }
 
-interface Category {
+export interface Category {
   name: string;
+  image: string;
   products: Product[];
 }
 
-interface OrderItem {
+export interface Combo {
   name: string;
   price: number;
-  unit: string;
+  image: string;
+  items: string[];
+}
+
+export interface CartItem {
+  name: string;
+  price: number;
   quantity: number;
+  unit?: string;
+  type: 'combo' | 'product';
 }
 
 @Component({
   selector: 'app-root',
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './app.html',
-  styleUrl: './app.css'
+  styleUrls: ['./app.css']
 })
 export class App {
-
+  deliveryFee = 40;
   whatsappNumber = '27772032201';
 
+  // Hero Image URL (Replace with 'assets/images/hero-banner.jpg' when downloaded)
+  heroImage = 'https://images.unsplash.com/photo-1558030006-450675393462?auto=format&fit=crop&w=1200&q=80';
+
+  // Butchery Combos
+  combos: Combo[] = [
+    {
+      name: 'Family Combo',
+      price: 1358,
+      image: 'https://images.unsplash.com/photo-1551028150-64b9f398f678?auto=format&fit=crop&w=800&q=80',
+      items: [
+        '1.5 kg Wors',
+        '1.5 kg Beef Stew',
+        '1.5 kg Lean Mince',
+        '2 kg Chuck',
+        '2 kg Short Rib',
+        '2 * Brine Free Frozen Full Chicken',
+        '2 kg Frozen Chips',
+        '1.2 kg Butternut (cut)',
+        '600 g Spinach (cut)',
+        '600 g Coleslaw Mix (cut)'
+      ]
+    },
+    {
+      name: 'Lone Combo',
+      price: 772,
+      image: 'https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?auto=format&fit=crop&w=800&q=80',
+      items: [
+        '1 kg Wors',
+        '1 kg Beef Stew',
+        '1 kg Mince',
+        '1 kg Chuck',
+        '1 kg Short Rib',
+        '1 * Brine Free Frozen Full Chicken',
+        '1 kg Frozen Chips',
+        '600 g Butternut (cut)',
+        '300 g Spinach (cut)',
+        '300 g Coleslaw Mix (cut)'
+      ]
+    }
+  ];
+
+  // Shop Categories
   categories: Category[] = [
     {
       name: 'Beef',
+      image: 'https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?auto=format&fit=crop&w=800&q=80',
       products: [
         { name: 'Brisket', price: 110, unit: 'kg' },
         { name: 'Wors', price: 100, unit: 'kg' },
@@ -37,7 +92,7 @@ export class App {
         { name: 'Lean Mince', price: 133, unit: 'kg' },
         { name: 'Chuck', price: 127, unit: 'kg' },
         { name: 'Short Rib', price: 127, unit: 'kg' },
-        { name: 'Ox Tribe', price: 70, unit: 'kg' },
+        { name: 'Ox Tripe', price: 70, unit: 'kg' },
         { name: 'Cow Heels', price: 60, unit: 'kg' },
         { name: 'Ox Liver', price: 76, unit: 'kg' },
         { name: 'Oxtail', price: 130, unit: 'kg' }
@@ -45,8 +100,9 @@ export class App {
     },
     {
       name: 'Pork',
+      image: 'https://images.unsplash.com/photo-1432139555190-58524dae6a55?auto=format&fit=crop&w=800&q=80',
       products: [
-        { name: 'Pork Stew', price: 90, unit: 'kg' },
+        { name: 'Stew', price: 90, unit: 'kg' },
         { name: 'Pork Chops', price: 85, unit: 'kg' },
         { name: 'Pork Shoulder', price: 95, unit: 'kg' },
         { name: 'Pork Trotters', price: 50, unit: 'kg' },
@@ -55,21 +111,19 @@ export class App {
     },
     {
       name: 'Chicken',
+      image: 'https://images.unsplash.com/photo-1587593810167-a84920ea0781?auto=format&fit=crop&w=800&q=80',
       products: [
         { name: 'Chicken Feet', price: 45, unit: 'kg' },
         { name: 'Chicken Livers', price: 48, unit: 'kg' },
         { name: 'Chicken Necks', price: 45, unit: 'kg' },
         { name: 'Chicken Wings', price: 90, unit: 'kg' },
         { name: 'Chicken Drumsticks', price: 70, unit: 'kg' },
-        {
-          name: 'Full Brine-Free Frozen Chicken',
-          price: 90,
-          unit: 'each'
-        }
+        { name: 'Full Brine Free Frozen Chicken', price: 90, unit: 'each' }
       ]
     },
     {
       name: 'Lamb',
+      image: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80',
       products: [
         { name: 'Lamb Stew', price: 105, unit: 'kg' },
         { name: 'Lamb Chops', price: 155, unit: 'kg' },
@@ -80,164 +134,80 @@ export class App {
     },
     {
       name: 'Vegetables',
+      image: 'https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=800&q=80',
       products: [
         { name: 'Frozen Chips', price: 30, unit: 'kg' },
-        { name: 'Butternut (Cut) 500g', price: 19, unit: 'pack' },
-        { name: 'Spinach (Cut) 300g', price: 18, unit: 'pack' },
+        { name: 'Butternut (cut) 500g', price: 19, unit: 'pack' },
+        { name: 'Spinach (cut) 300g', price: 18, unit: 'pack' },
         { name: 'Coleslaw Rainbow 300g', price: 20, unit: 'pack' }
       ]
     }
   ];
 
-  combos = [
-    {
-      name: 'Family Combo',
-      price: 1358,
-      description: 'A generous family-sized meat and vegetable combo.',
-      items: [
-        '1.5 kg Wors',
-        '1.5 kg Beef Stew',
-        '1.5 kg Lean Mince',
-        '2 kg Chuck',
-        '2 kg Short Rib',
-        '2 × Brine-Free Frozen Full Chicken',
-        '2 kg Frozen Chips',
-        '1.2 kg Butternut',
-        '600 g Spinach',
-        '600 g Coleslaw Mix'
-      ]
-    },
-    {
-      name: 'Lone Combo',
-      price: 772,
-      description: 'A smaller combo with a great selection of essentials.',
-      items: [
-        '1 kg Wors',
-        '1 kg Beef Stew',
-        '1 kg Mince',
-        '1 kg Chuck',
-        '1 kg Short Rib',
-        '1 × Brine-Free Frozen Full Chicken',
-        '1 kg Frozen Chips',
-        '600 g Butternut',
-        '300 g Spinach',
-        '300 g Coleslaw Mix'
-      ]
-    }
-  ];
+  cart: CartItem[] = [];
 
-  orderItems: OrderItem[] = [];
-
-  scrollToProducts(): void {
-    document.getElementById('products')?.scrollIntoView({
-      behavior: 'smooth'
-    });
+  scrollToSection(id: string) {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
   }
 
-  addProduct(product: Product): void {
-    const existingItem = this.orderItems.find(
-      item => item.name === product.name
-    );
-
-    if (existingItem) {
-      existingItem.quantity++;
+  addToCart(item: { name: string; price: number; unit?: string }, type: 'combo' | 'product') {
+    const existing = this.cart.find(i => i.name === item.name);
+    if (existing) {
+      existing.quantity++;
     } else {
-      this.orderItems.push({
-        name: product.name,
-        price: product.price,
-        unit: product.unit,
-        quantity: 1
+      this.cart.push({
+        name: item.name,
+        price: item.price,
+        unit: item.unit,
+        quantity: 1,
+        type
       });
     }
-
-    this.scrollToOrder();
   }
 
-  addCombo(combo: { name: string; price: number }): void {
-    const existingItem = this.orderItems.find(
-      item => item.name === combo.name
-    );
-
-    if (existingItem) {
-      existingItem.quantity++;
-    } else {
-      this.orderItems.push({
-        name: combo.name,
-        price: combo.price,
-        unit: 'combo',
-        quantity: 1
-      });
-    }
-
-    this.scrollToOrder();
-  }
-
-  increaseQuantity(item: OrderItem): void {
+  increaseQuantity(item: CartItem) {
     item.quantity++;
   }
 
-  decreaseQuantity(item: OrderItem): void {
+  decreaseQuantity(item: CartItem) {
     if (item.quantity > 1) {
       item.quantity--;
     } else {
-      this.removeItem(item);
+      this.removeFromCart(item);
     }
   }
 
-  removeItem(item: OrderItem): void {
-    this.orderItems = this.orderItems.filter(
-      orderItem => orderItem !== item
-    );
+  removeFromCart(item: CartItem) {
+    this.cart = this.cart.filter(i => i.name !== item.name);
   }
 
-  get orderCount(): number {
-    return this.orderItems.reduce(
-      (total, item) => total + item.quantity,
-      0
-    );
+  clearOrder() {
+    this.cart = [];
   }
 
-  get orderTotal(): number {
-    return this.orderItems.reduce(
-      (total, item) => total + (item.price * item.quantity),
-      0
-    );
+  get cartSubtotal(): number {
+    return this.cart.reduce((total, item) => total + (item.price * item.quantity), 0);
   }
 
-  scrollToOrder(): void {
-    setTimeout(() => {
-      document.getElementById('order-summary')?.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
-      });
-    }, 100);
+  get cartTotal(): number {
+    return this.cart.length > 0 ? this.cartSubtotal + this.deliveryFee : 0;
   }
 
-  orderOnWhatsApp(): void {
-    if (this.orderItems.length === 0) {
-      return;
-    }
+  orderOnWhatsApp() {
+    if (this.cart.length === 0) return;
 
-    let message = `Hi Fourways Butchery,\n\n`;
-    message += `I would like to place the following order:\n\n`;
-
-    this.orderItems.forEach(item => {
-      const itemTotal = item.price * item.quantity;
-
-      message += `${item.name} x${item.quantity} - R${itemTotal}\n`;
+    let text = `*NEW ORDER - 4WAYS BUTCHERY*\n\n`;
+    
+    this.cart.forEach(item => {
+      text += `• ${item.quantity}x ${item.name} - R${item.price * item.quantity}\n`;
     });
 
-    message += `\nEstimated total: R${this.orderTotal}\n\n`;
-    message += `Please confirm availability and the final order total.\n\n`;
-    message += `Thank you.`;
+    text += `\n*Subtotal:* R${this.cartSubtotal}`;
+    text += `\n*Delivery Fee:* R${this.deliveryFee}`;
+    text += `\n*Total Due:* R${this.cartTotal}\n\n`;
+    text += `Please confirm my order and provide payment details.`;
 
-    const whatsappUrl =
-      `https://wa.me/${this.whatsappNumber}?text=${encodeURIComponent(message)}`;
-
-    window.open(whatsappUrl, '_blank');
-  }
-
-  clearOrder(): void {
-    this.orderItems = [];
+    const encodedText = encodeURIComponent(text);
+    window.open(`https://wa.me/${this.whatsappNumber}?text=${encodedText}`, '_blank');
   }
 }

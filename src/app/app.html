@@ -1,568 +1,243 @@
+<!-- TOP ANNOUNCEMENT BAR -->
+<div class="top-announcement">
+  <span>Delivering Across Joburg North • Delivery Fee: R40 • Delivery Days: Saturday & Sunday</span>
+</div>
+
+<!-- HEADER -->
 <header class="site-header">
-
   <div class="container nav-container">
-
-    <div class="logo">
-      <span class="logo-main">FOURWAYS</span>
-      <span class="logo-sub">BUTCHERY</span>
+    <div class="logo" (click)="scrollToSection('home')">
+      <div class="logo-badge">4WAYS</div>
+      <div class="logo-text">
+        <span class="logo-main">ONLINE BUTCHERY</span>
+        <span class="logo-sub">Fresh Meat & Fresh Produce</span>
+      </div>
     </div>
 
-    <nav>
-      <a href="#home">Home</a>
-      <a href="#combos">Combos</a>
-      <a href="#products">Shop</a>
-      <a href="#order-summary">My Order</a>
-      <a href="#contact">Contact</a>
+    <nav class="main-nav">
+      <a (click)="scrollToSection('home')">Home</a>
+      <a (click)="scrollToSection('combos')">Packages</a>
+      <a (click)="scrollToSection('shop')">Shop Cuts</a>
+      <a (click)="scrollToSection('order-summary')">
+        My Order
+        @if (cart.length > 0) {
+          <span class="cart-badge">{{ cart.length }}</span>
+        }
+      </a>
     </nav>
 
-    <a
-      class="header-whatsapp"
-      href="https://wa.me/27772032201"
-      target="_blank"
-      rel="noopener">
-      WhatsApp
+    <a class="header-whatsapp" href="https://wa.me/27772032201" target="_blank">
+      WhatsApp: 077 203 2201
     </a>
-
   </div>
-
 </header>
 
-
 <main>
-
-  <!-- HERO -->
-
-  <section id="home" class="hero">
-
-    <div class="hero-overlay">
-
-      <div class="container hero-content">
-
-        <p class="eyebrow">
-          FRESH • QUALITY • VALUE
+  <!-- HERO SECTION -->
+  <section id="home" class="hero-section">
+    <div class="container hero-grid">
+      <div class="hero-text">
+        <span class="hero-tag">PREMIUM QUALITY • GREAT VALUE</span>
+        <h1>Fresh Meat & Produce <br><span class="highlight-red">Delivered To Your Door</span></h1>
+        <p class="hero-description">
+          Fourways Online Butchery brings top-grade beef, pork, chicken, lamb, and freshly prepped vegetables directly to your home across Joburg North.
         </p>
 
-        <h1>
-          QUALITY MEAT.<br>
-          GREAT VALUE.
-        </h1>
-
-        <p class="hero-text">
-          Your local online butchery for quality meat,
-          family combos and fresh vegetables.
-        </p>
-
-        <button
-          type="button"
-          class="primary-button"
-          (click)="scrollToProducts()">
-          SHOP NOW
-        </button>
-
+        <div class="hero-actions">
+          <button class="btn-primary" (click)="scrollToSection('shop')">SHOP ALL CUTS</button>
+          <button class="btn-secondary" (click)="scrollToSection('combos')">VIEW COMBOS</button>
+        </div>
       </div>
 
+      <div class="hero-image-box">
+        <img [src]="heroImage" alt="Fresh Meat Platter" class="hero-img">
+      </div>
     </div>
-
   </section>
 
-
-  <!-- COMBOS -->
-
-  <section id="combos" class="section">
-
+  <!-- DELIVERY INFO STRIP -->
+  <section class="delivery-strip">
     <div class="container">
+      <h3>DELIVERING ACROSS JOBURG NORTH</h3>
+      <p class="suburbs">
+        Fourways • Sandton • Bryanston • Midrand • Randburg • Sunninghill • Lonehill • Douglasdale • Paulshof • Kyalami • North Riding • Northgate • Rivonia
+      </p>
+    </div>
+  </section>
 
-      <div class="section-heading">
-
-        <p class="eyebrow">
-          OUR SPECIALS
-        </p>
-
-        <h2>
-          Butchery Combos
-        </h2>
-
-        <p>
-          Convenient meat packages designed to give you great value.
-        </p>
-
+  <!-- COMBOS SECTION -->
+  <section id="combos" class="section">
+    <div class="container">
+      <div class="section-title">
+        <span class="section-subtitle">SPECIAL PACKAGES</span>
+        <h2>Butchery Combos</h2>
+        <div class="title-underline"></div>
       </div>
-
 
       <div class="combo-grid">
-
         @for (combo of combos; track combo.name) {
-
           <article class="combo-card">
-
-            <div class="combo-header">
-
-              <div>
-
-                <p class="combo-label">
-                  SPECIAL COMBO
-                </p>
-
-                <h3>
-                  {{ combo.name }}
-                </h3>
-
-              </div>
-
-              <span class="combo-price">
-                R{{ combo.price }}
-              </span>
-
+            <div class="combo-image-wrapper">
+              <img [src]="combo.image" [alt]="combo.name" class="combo-img">
+              <span class="price-pill">R{{ combo.price }}</span>
             </div>
-
-
-            <p class="combo-description">
-              {{ combo.description }}
-            </p>
-
-
-            <ul>
-
-              @for (item of combo.items; track item) {
-
-                <li>
-                  {{ item }}
-                </li>
-
-              }
-
-            </ul>
-
-
-            <button
-              type="button"
-              class="whatsapp-button"
-              (click)="addCombo(combo)">
-              ADD COMBO TO ORDER
-            </button>
-
-          </article>
-
-        }
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- PRODUCTS -->
-
-  <section
-    id="products"
-    class="section products-section">
-
-    <div class="container">
-
-      <div class="section-heading">
-
-        <p class="eyebrow">
-          SHOP
-        </p>
-
-        <h2>
-          Our Products
-        </h2>
-
-        <p>
-          Choose from our selection of beef, pork,
-          chicken, lamb and vegetables.
-        </p>
-
-      </div>
-
-
-      @for (category of categories; track category.name) {
-
-        <div class="category">
-
-          <h3 class="category-title">
-            {{ category.name }}
-          </h3>
-
-
-          <div class="product-grid">
-
-            @for (product of category.products; track product.name) {
-
-              <article class="product-card">
-
-                <div class="product-image">
-
-                  <span>🥩</span>
-
-                </div>
-
-
-                <div class="product-info">
-
-                  <h4>
-                    {{ product.name }}
-                  </h4>
-
-
-                  <p class="price">
-
-                    R{{ product.price }}
-
-                    <small>
-                      / {{ product.unit }}
-                    </small>
-
-                  </p>
-
-
-                  <button
-                    type="button"
-                    class="add-button"
-                    (click)="addProduct(product)">
-                    ADD TO ORDER
-                  </button>
-
-                </div>
-
-              </article>
-
-            }
-
-          </div>
-
-        </div>
-
-      }
-
-    </div>
-
-  </section>
-
-
-  <!-- ORDER SUMMARY -->
-
-  <section
-    id="order-summary"
-    class="order-summary-section">
-
-    <div class="container">
-
-      <div class="section-heading">
-
-        <p class="eyebrow">
-          YOUR ORDER
-        </p>
-
-        <h2>
-          Order Summary
-        </h2>
-
-
-        @if (orderItems.length === 0) {
-
-          <p>
-            Your order is currently empty.
-            Add products or a combo above.
-          </p>
-
-        } @else {
-
-          <p>
-            {{ orderCount }}
-            item{{ orderCount === 1 ? '' : 's' }}
-            in your order.
-          </p>
-
-        }
-
-      </div>
-
-
-      @if (orderItems.length > 0) {
-
-        <div class="order-box">
-
-          @for (item of orderItems; track item.name) {
-
-            <div class="order-item">
-
-              <div class="order-item-details">
-
-                <h3>
-                  {{ item.name }}
-                </h3>
-
-                <p>
-                  R{{ item.price }} / {{ item.unit }}
-                </p>
-
-              </div>
-
-
-              <div class="quantity-controls">
-
-                <button
-                  type="button"
-                  (click)="decreaseQuantity(item)">
-                  −
-                </button>
-
-                <span>
-                  {{ item.quantity }}
-                </span>
-
-                <button
-                  type="button"
-                  (click)="increaseQuantity(item)">
-                  +
-                </button>
-
-              </div>
-
-
-              <div class="item-total">
-                R{{ item.price * item.quantity }}
-              </div>
-
-
-              <button
-                type="button"
-                class="remove-button"
-                (click)="removeItem(item)"
-                aria-label="Remove item">
-                ×
+            
+            <div class="combo-body">
+              <h3>{{ combo.name }}</h3>
+              <ul class="combo-items-list">
+                @for (item of combo.items; track item) {
+                  <li>{{ item }}</li>
+                }
+              </ul>
+              
+              <button class="btn-add-combo" (click)="addToCart(combo, 'combo')">
+                ADD COMBO TO ORDER
               </button>
+            </div>
+          </article>
+        }
+      </div>
+    </div>
+  </section>
 
+  <!-- SHOP CATEGORIES SECTION -->
+  <section id="shop" class="section section-alt">
+    <div class="container">
+      <div class="section-title">
+        <span class="section-subtitle">MAKE YOUR OWN COMBO</span>
+        <h2>Shop By Category</h2>
+        <div class="title-underline"></div>
+      </div>
+
+      <div class="category-grid">
+        @for (category of categories; track category.name) {
+          <div class="category-card">
+            <div class="category-header-box">
+              <img [src]="category.image" [alt]="category.name" class="category-banner-img">
+              <div class="category-overlay">
+                <h3>{{ category.name }}</h3>
+                <span class="per-kg-badge">PRICE PER KG / PACK</span>
+              </div>
             </div>
 
-          }
-
-
-          <div class="order-total">
-
-            <span>
-              Estimated Total
-            </span>
-
-            <strong>
-              R{{ orderTotal }}
-            </strong>
-
+            <div class="product-list">
+              @for (product of category.products; track product.name) {
+                <div class="product-row">
+                  <div class="product-info">
+                    <span class="product-name">{{ product.name }}</span>
+                    <span class="product-unit">R{{ product.price }} / {{ product.unit }}</span>
+                  </div>
+                  <button class="btn-add-item" (click)="addToCart(product, 'product')">
+                    + Add
+                  </button>
+                </div>
+              }
+            </div>
           </div>
-
-
-          <p class="order-note">
-
-            Prices are subject to availability and confirmation.
-            Final order total will be confirmed via WhatsApp.
-
-          </p>
-
-
-          <div class="order-actions">
-
-            <button
-              type="button"
-              class="whatsapp-button large"
-              (click)="orderOnWhatsApp()">
-              ORDER ON WHATSAPP
-            </button>
-
-
-            <button
-              type="button"
-              class="clear-button"
-              (click)="clearOrder()">
-              CLEAR ORDER
-            </button>
-
-          </div>
-
-        </div>
-
-      }
-
+        }
+      </div>
     </div>
-
   </section>
 
-
-  <!-- WHY US -->
-
-  <section class="why-us">
-
+  <!-- ORDER SUMMARY SECTION -->
+  <section id="order-summary" class="section">
     <div class="container">
-
-      <div class="section-heading light">
-
-        <p class="eyebrow">
-          WHY FOURWAYS BUTCHERY
-        </p>
-
-        <h2>
-          Quality You Can Count On
-        </h2>
-
+      <div class="section-title">
+        <span class="section-subtitle">YOUR CART</span>
+        <h2>Order Summary</h2>
+        <div class="title-underline"></div>
       </div>
 
+      <div class="order-box">
+        @if (cart.length === 0) {
+          <div class="empty-cart-state">
+            <p>Your order is currently empty.</p>
+            <button class="btn-primary" (click)="scrollToSection('shop')">Browse Products</button>
+          </div>
+        } @else {
+          <div class="cart-table">
+            <div class="cart-header">
+              <span>Item</span>
+              <span>Price</span>
+              <span>Quantity</span>
+              <span>Total</span>
+              <span></span>
+            </div>
 
-      <div class="benefits">
+            @for (item of cart; track item.name) {
+              <div class="cart-row">
+                <div class="col-name">
+                  <strong>{{ item.name }}</strong>
+                  <span class="item-type-tag">{{ item.type }}</span>
+                </div>
+                <div class="col-price">
+                  R{{ item.price }} {{ item.unit ? '/' + item.unit : '' }}
+                </div>
+                <div class="col-qty">
+                  <button (click)="decreaseQuantity(item)">-</button>
+                  <span>{{ item.quantity }}</span>
+                  <button (click)="increaseQuantity(item)">+</button>
+                </div>
+                <div class="col-total">
+                  R{{ item.price * item.quantity }}
+                </div>
+                <div class="col-remove">
+                  <button class="btn-remove" (click)="removeFromCart(item)">×</button>
+                </div>
+              </div>
+            }
+          </div>
 
-        <div class="benefit">
+          <div class="cart-totals">
+            <div class="total-row">
+              <span>Subtotal</span>
+              <span>R{{ cartSubtotal }}</span>
+            </div>
+            <div class="total-row">
+              <span>Delivery Fee (Joburg North)</span>
+              <span>R{{ deliveryFee }}</span>
+            </div>
+            <div class="total-row grand-total">
+              <span>Estimated Total</span>
+              <span>R{{ cartTotal }}</span>
+            </div>
+          </div>
 
-          <span>🥩</span>
-
-          <h3>
-            Quality Meat
-          </h3>
-
-          <p>
-            Carefully selected meat for your family
-            and braai.
-          </p>
-
-        </div>
-
-
-        <div class="benefit">
-
-          <span>💰</span>
-
-          <h3>
-            Great Value
-          </h3>
-
-          <p>
-            Practical combos and competitive prices.
-          </p>
-
-        </div>
-
-
-        <div class="benefit">
-
-          <span>📱</span>
-
-          <h3>
-            Easy Ordering
-          </h3>
-
-          <p>
-            Browse online and place your order
-            directly through WhatsApp.
-          </p>
-
-        </div>
-
+          <div class="cart-actions">
+            <button class="btn-whatsapp-checkout" (click)="orderOnWhatsApp()">
+              ORDER ON WHATSAPP (077 203 2201)
+            </button>
+            <button class="btn-clear-cart" (click)="clearOrder()">CLEAR ORDER</button>
+          </div>
+        }
       </div>
-
     </div>
-
   </section>
-
-
-  <!-- ORDER CTA -->
-
-  <section class="order-cta">
-
-    <div class="container">
-
-      <p class="eyebrow">
-        READY TO ORDER?
-      </p>
-
-      <h2>
-        Let's Get Your Meat Sorted.
-      </h2>
-
-      <p>
-        Choose your products and contact us on WhatsApp.
-      </p>
-
-
-      <a
-        class="whatsapp-button large"
-        href="https://wa.me/27772032201"
-        target="_blank"
-        rel="noopener">
-        CHAT WITH US ON WHATSAPP
-      </a>
-
-
-      <p class="phone">
-        WhatsApp: 077 203 2201
-      </p>
-
-    </div>
-
-  </section>
-
 </main>
 
-
-<!-- FOOTER -->
-
-<footer id="contact">
-
+<footer class="site-footer">
   <div class="container footer-content">
-
     <div>
-
       <div class="logo">
-
-        <span class="logo-main">
-          FOURWAYS
-        </span>
-
-        <span class="logo-sub">
-          BUTCHERY
-        </span>
-
+        <div class="logo-badge">4WAYS</div>
+        <div class="logo-text">
+          <span class="logo-main">ONLINE BUTCHERY</span>
+        </div>
       </div>
-
-
-      <p>
-        Quality meat. Great value.
-      </p>
-
+      <p class="footer-tagline">Fresh Meat, Fresh Produce, Delivered to You!</p>
     </div>
 
-
-    <div class="footer-contact">
-
-      <h3>
-        Order With Us
-      </h3>
-
-      <a
-        href="https://wa.me/27772032201"
-        target="_blank"
-        rel="noopener">
-
-        WhatsApp: 077 203 2201
-
-      </a>
-
+    <div class="footer-info">
+      <h4>Order & Delivery</h4>
+      <p>Delivery Days: Saturday & Sunday</p>
+      <p>Delivery Fee: R40 Across Joburg North</p>
+      <p>WhatsApp: 077 203 2201</p>
     </div>
-
   </div>
-
 
   <div class="footer-bottom">
-
-    <p>
-      © 2026 Fourways Butchery.
-      All rights reserved.
-    </p>
-
-    <p>
-      Prices are subject to availability and confirmation.
-      Final order total will be confirmed via WhatsApp.
-    </p>
-
+    <div class="container">
+      <p>© 2026 Fourways Butchery. WE DELIVER • YOU RELAX • WE CARE</p>
+    </div>
   </div>
-
 </footer>
