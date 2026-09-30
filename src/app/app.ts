@@ -137,7 +137,7 @@ export class App {
     {
       name: 'Family Combo',
 
-      price: 1358,
+      price: 1378,
 
       image:
         'https://images.unsplash.com/photo-1558030006-450675393462?auto=format&fit=crop&w=1000&q=80',
@@ -156,7 +156,7 @@ export class App {
     {
       name: 'Lone Combo',
 
-      price: 772,
+      price: 782,
 
       image:
         'https://images.unsplash.com/photo-1600891964092-4316c288032e?auto=format&fit=crop&w=1000&q=80',
@@ -190,8 +190,8 @@ export class App {
       products: [
 
         { name: 'Brisket', price: 110, unit: 'kg' },
-        { name: 'Wors', price: 100, unit: 'kg' },
-        { name: 'Beef Stew', price: 100, unit: 'kg' },
+        { name: 'Wors', price: 105, unit: 'kg' },
+        { name: 'Beef Stew', price: 105, unit: 'kg' },
         { name: 'Lean Mince', price: 133, unit: 'kg' },
         { name: 'Chuck', price: 127, unit: 'kg' },
         { name: 'Short Rib', price: 127, unit: 'kg' },
@@ -250,10 +250,10 @@ export class App {
 
       products: [
 
-        { name: 'Lamb Stew', price: 105, unit: 'kg' },
-        { name: 'Lamb Chops', price: 155, unit: 'kg' },
-        { name: 'Lamb Shank', price: 165, unit: 'kg' },
-        { name: 'Lamb Ribs', price: 160, unit: 'kg' },
+        { name: 'Lamb Stew', price: 150, unit: 'kg' },
+        { name: 'Lamb Chops', price: 215, unit: 'kg' },
+        { name: 'Lamb Shank', price: 170, unit: 'kg' },
+        { name: 'Lamb Ribs', price: 170, unit: 'kg' },
         { name: 'Lamb Trotters', price: 70, unit: 'kg' }
 
       ]
