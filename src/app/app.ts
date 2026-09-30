@@ -419,29 +419,75 @@ export class App {
 
   private validateCustomerDetails(): boolean {
 
-    if (
+  const name = this.customerName.trim();
+  const phone = this.customerPhone.trim();
+  const address = this.deliveryAddress.trim();
+  const selectedSuburb = this.suburb.trim();
 
-      !this.customerName.trim() ||
+  // =========================================================
+  // REQUIRED FIELDS
+  // =========================================================
 
-      !this.customerPhone.trim() ||
+  if (!name) {
 
-      !this.deliveryAddress.trim() ||
+    this.showValidationError = true;
+    this.paymentError = 'Please enter your full name.';
 
-      !this.suburb
-
-    ) {
-
-      this.showValidationError = true;
-
-      return false;
-
-    }
-
-    this.showValidationError = false;
-
-    return true;
-
+    return false;
   }
+
+ if (!phone) {
+
+  this.showValidationError = true;
+  this.paymentError =
+    'Please enter your mobile / WhatsApp number.';
+
+  return false;
+}
+
+// South African phone number validation
+const phoneDigits = phone.replace(/\s+/g, '');
+
+const phonePattern =
+  /^(?:\+27|27|0)[6-8][0-9]{8}$/;
+
+if (!phonePattern.test(phoneDigits)) {
+
+  this.showValidationError = true;
+  this.paymentError =
+    'Please enter a valid South African mobile number.';
+
+  return false;
+}
+
+  if (!address) {
+
+    this.showValidationError = true;
+    this.paymentError =
+      'Please enter your street address and building.';
+
+    return false;
+  }
+
+  if (!selectedSuburb) {
+
+    this.showValidationError = true;
+    this.paymentError =
+      'Please select your suburb.';
+
+    return false;
+  }
+
+  // =========================================================
+  // OPTIONAL FIELD
+  // deliveryNotes does NOT need validation
+  // =========================================================
+
+  this.showValidationError = false;
+  this.paymentError = '';
+
+  return true;
+}
 
   // =========================================================
   // CREATE ORDER ITEMS
