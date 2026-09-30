@@ -1,243 +1,1270 @@
+<!-- ========================================================= -->
+
 <!-- TOP ANNOUNCEMENT BAR -->
+
+<!-- ========================================================= -->
+
 <div class="top-announcement">
-  <span>Delivering Across Joburg North • Delivery Fee: R40 • Delivery Days: Saturday & Sunday</span>
+
+  <span>
+    Delivering Across Joburg North •
+    Delivery Fee: R40 •
+    Delivery Days: Saturday & Sunday
+  </span>
+
 </div>
 
+<!-- ========================================================= -->
+
 <!-- HEADER -->
+
+<!-- ========================================================= -->
+
 <header class="site-header">
+
   <div class="container nav-container">
-    <div class="logo" (click)="scrollToSection('home')">
-      <div class="logo-badge">4WAYS</div>
-      <div class="logo-text">
-        <span class="logo-main">ONLINE BUTCHERY</span>
-        <span class="logo-sub">Fresh Meat & Fresh Produce</span>
-      </div>
-    </div>
 
-    <nav class="main-nav">
-      <a (click)="scrollToSection('home')">Home</a>
-      <a (click)="scrollToSection('combos')">Packages</a>
-      <a (click)="scrollToSection('shop')">Shop Cuts</a>
-      <a (click)="scrollToSection('order-summary')">
-        My Order
-        @if (cart.length > 0) {
-          <span class="cart-badge">{{ cart.length }}</span>
-        }
-      </a>
-    </nav>
+```
+<div
+  class="logo"
+  (click)="scrollToSection('home')"
+>
 
-    <a class="header-whatsapp" href="https://wa.me/27772032201" target="_blank">
-      WhatsApp: 077 203 2201
-    </a>
+  <div class="logo-badge">
+    4WAYS
   </div>
+
+  <div class="logo-text">
+
+    <span class="logo-main">
+      ONLINE BUTCHERY
+    </span>
+
+    <span class="logo-sub">
+      Fresh Meat & Fresh Produce
+    </span>
+
+  </div>
+
+</div>
+
+
+<nav class="main-nav">
+
+  <a
+    (click)="scrollToSection('home')"
+  >
+    Home
+  </a>
+
+  <a
+    (click)="scrollToSection('combos')"
+  >
+    Packages
+  </a>
+
+  <a
+    (click)="scrollToSection('shop')"
+  >
+    Shop Cuts
+  </a>
+
+  <a
+    (click)="scrollToSection('order-summary')"
+  >
+
+    My Order
+
+    @if (cart.length > 0) {
+
+      <span class="cart-badge">
+        {{ cart.length }}
+      </span>
+
+    }
+
+  </a>
+
+</nav>
+
+
+<a
+  class="header-whatsapp"
+  href="https://wa.me/27772032201"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+
+  WhatsApp: 077 203 2201
+
+</a>
+```
+
+  </div>
+
 </header>
 
+<!-- ========================================================= -->
+
+<!-- MAIN -->
+
+<!-- ========================================================= -->
+
 <main>
+
+  <!-- ======================================================= -->
+
   <!-- HERO SECTION -->
-  <section id="home" class="hero-section">
-    <div class="container hero-grid">
-      <div class="hero-text">
-        <span class="hero-tag">PREMIUM QUALITY • GREAT VALUE</span>
-        <h1>Fresh Meat & Produce <br><span class="highlight-red">Delivered To Your Door</span></h1>
-        <p class="hero-description">
-          Fourways Online Butchery brings top-grade beef, pork, chicken, lamb, and freshly prepped vegetables directly to your home across Joburg North.
+
+  <!-- ======================================================= -->
+
+  <section
+    id="home"
+    class="hero-section"
+  >
+
+```
+<div class="container hero-grid">
+
+  <div class="hero-text">
+
+    <span class="hero-tag">
+      PREMIUM QUALITY • GREAT VALUE
+    </span>
+
+    <h1>
+
+      Fresh Meat & Produce
+
+      <br>
+
+      <span class="highlight-red">
+        Delivered To Your Door
+      </span>
+
+    </h1>
+
+    <p class="hero-description">
+
+      Fourways Online Butchery brings
+      top-grade beef, pork, chicken,
+      lamb, and freshly prepped vegetables
+      directly to your home across Joburg North.
+
+    </p>
+
+
+    <div class="hero-actions">
+
+      <button
+        class="btn-primary"
+        type="button"
+        (click)="scrollToSection('shop')"
+      >
+
+        SHOP ALL CUTS
+
+      </button>
+
+
+      <button
+        class="btn-secondary"
+        type="button"
+        (click)="scrollToSection('combos')"
+      >
+
+        VIEW COMBOS
+
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <div class="hero-image-box">
+
+    <img
+      [src]="heroImage"
+      alt="Fresh Meat Platter"
+      class="hero-img"
+    >
+
+  </div>
+
+</div>
+```
+
+  </section>
+
+  <!-- ======================================================= -->
+
+  <!-- DELIVERY INFO -->
+
+  <!-- ======================================================= -->
+
+  <section class="delivery-strip">
+
+```
+<div class="container">
+
+  <h3>
+    DELIVERING ACROSS JOBURG NORTH
+  </h3>
+
+  <p class="suburbs">
+
+    Fourways • Sandton • Bryanston •
+    Midrand • Randburg • Sunninghill •
+    Lonehill • Douglasdale • Paulshof •
+    Kyalami • North Riding • Northgate • Rivonia
+
+  </p>
+
+</div>
+```
+
+  </section>
+
+  <!-- ======================================================= -->
+
+  <!-- COMBOS -->
+
+  <!-- ======================================================= -->
+
+  <section
+    id="combos"
+    class="section"
+  >
+
+```
+<div class="container">
+
+  <div class="section-title">
+
+    <span class="section-subtitle">
+      SPECIAL PACKAGES
+    </span>
+
+    <h2>
+      Butchery Combos
+    </h2>
+
+    <div class="title-underline"></div>
+
+  </div>
+
+
+  <div class="combo-grid">
+
+    @for (
+      combo of combos;
+      track combo.name
+    ) {
+
+      <article class="combo-card">
+
+        <div class="combo-image-wrapper">
+
+          <img
+            [src]="combo.image"
+            [alt]="combo.name"
+            class="combo-img"
+          >
+
+          <span class="price-pill">
+
+            R{{ combo.price | number:'1.2-2' }}
+
+          </span>
+
+        </div>
+
+
+        <div class="combo-body">
+
+          <h3>
+            {{ combo.name }}
+          </h3>
+
+
+          <ul class="combo-items-list">
+
+            @for (
+              item of combo.items;
+              track item
+            ) {
+
+              <li>
+                {{ item }}
+              </li>
+
+            }
+
+          </ul>
+
+
+          <button
+            type="button"
+            class="btn-add-combo"
+            (click)="addToCart(combo, 'combo')"
+          >
+
+            ADD COMBO TO ORDER
+
+          </button>
+
+        </div>
+
+      </article>
+
+    }
+
+  </div>
+
+</div>
+```
+
+  </section>
+
+  <!-- ======================================================= -->
+
+  <!-- SHOP CATEGORIES -->
+
+  <!-- ======================================================= -->
+
+  <section
+    id="shop"
+    class="section section-alt"
+  >
+
+```
+<div class="container">
+
+  <div class="section-title">
+
+    <span class="section-subtitle">
+      MAKE YOUR OWN COMBO
+    </span>
+
+    <h2>
+      Shop By Category
+    </h2>
+
+    <div class="title-underline"></div>
+
+  </div>
+
+
+  <div class="category-grid">
+
+    @for (
+      category of categories;
+      track category.name
+    ) {
+
+      <div class="category-card">
+
+
+        <!-- CATEGORY IMAGE -->
+
+        <div class="category-header-box">
+
+          <img
+            [src]="category.image"
+            [alt]="category.name"
+            class="category-banner-img"
+          >
+
+          <div class="category-overlay">
+
+            <h3>
+              {{ category.name }}
+            </h3>
+
+            <span class="per-kg-badge">
+              PRICE PER KG / PACK
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <!-- PRODUCTS -->
+
+        <div class="product-list">
+
+          @for (
+            product of category.products;
+            track product.name
+          ) {
+
+            <div class="product-row">
+
+              <div class="product-info">
+
+                <span class="product-name">
+                  {{ product.name }}
+                </span>
+
+                <span class="product-unit">
+
+                  R{{ product.price | number:'1.2-2' }}
+                  /
+                  {{ product.unit }}
+
+                </span>
+
+              </div>
+
+
+              <button
+                type="button"
+                class="btn-add-item"
+                (click)="addToCart(product, 'product')"
+              >
+
+                + Add
+
+              </button>
+
+            </div>
+
+          }
+
+        </div>
+
+      </div>
+
+    }
+
+  </div>
+
+</div>
+```
+
+  </section>
+
+  <!-- ======================================================= -->
+
+  <!-- ORDER SUMMARY -->
+
+  <!-- ======================================================= -->
+
+  <section
+    id="order-summary"
+    class="section"
+  >
+
+```
+<div class="container">
+
+  <div class="section-title">
+
+    <span class="section-subtitle">
+      YOUR CART & CHECKOUT
+    </span>
+
+    <h2>
+      Order Summary & Delivery
+    </h2>
+
+    <div class="title-underline"></div>
+
+  </div>
+
+
+  <div class="order-box">
+
+
+    <!-- ================================================= -->
+    <!-- EMPTY CART -->
+    <!-- ================================================= -->
+
+    @if (cart.length === 0) {
+
+      <div class="empty-cart-state">
+
+        <p>
+          Your order is currently empty.
         </p>
 
-        <div class="hero-actions">
-          <button class="btn-primary" (click)="scrollToSection('shop')">SHOP ALL CUTS</button>
-          <button class="btn-secondary" (click)="scrollToSection('combos')">VIEW COMBOS</button>
+        <button
+          type="button"
+          class="btn-primary"
+          (click)="scrollToSection('shop')"
+        >
+
+          Browse Products
+
+        </button>
+
+      </div>
+
+    }
+
+
+    <!-- ================================================= -->
+    <!-- CART -->
+    <!-- ================================================= -->
+
+    @else {
+
+
+      <!-- ================================================= -->
+      <!-- CART TABLE -->
+      <!-- ================================================= -->
+
+      <div class="cart-table">
+
+        <div class="cart-header">
+
+          <span>
+            Item
+          </span>
+
+          <span>
+            Price
+          </span>
+
+          <span>
+            Quantity
+          </span>
+
+          <span>
+            Total
+          </span>
+
+          <span></span>
+
         </div>
-      </div>
 
-      <div class="hero-image-box">
-        <img [src]="heroImage" alt="Fresh Meat Platter" class="hero-img">
-      </div>
-    </div>
-  </section>
 
-  <!-- DELIVERY INFO STRIP -->
-  <section class="delivery-strip">
-    <div class="container">
-      <h3>DELIVERING ACROSS JOBURG NORTH</h3>
-      <p class="suburbs">
-        Fourways • Sandton • Bryanston • Midrand • Randburg • Sunninghill • Lonehill • Douglasdale • Paulshof • Kyalami • North Riding • Northgate • Rivonia
-      </p>
-    </div>
-  </section>
+        @for (
+          item of cart;
+          track item.name
+        ) {
 
-  <!-- COMBOS SECTION -->
-  <section id="combos" class="section">
-    <div class="container">
-      <div class="section-title">
-        <span class="section-subtitle">SPECIAL PACKAGES</span>
-        <h2>Butchery Combos</h2>
-        <div class="title-underline"></div>
-      </div>
+          <div class="cart-row">
 
-      <div class="combo-grid">
-        @for (combo of combos; track combo.name) {
-          <article class="combo-card">
-            <div class="combo-image-wrapper">
-              <img [src]="combo.image" [alt]="combo.name" class="combo-img">
-              <span class="price-pill">R{{ combo.price }}</span>
-            </div>
-            
-            <div class="combo-body">
-              <h3>{{ combo.name }}</h3>
-              <ul class="combo-items-list">
-                @for (item of combo.items; track item) {
-                  <li>{{ item }}</li>
-                }
-              </ul>
-              
-              <button class="btn-add-combo" (click)="addToCart(combo, 'combo')">
-                ADD COMBO TO ORDER
-              </button>
-            </div>
-          </article>
-        }
-      </div>
-    </div>
-  </section>
 
-  <!-- SHOP CATEGORIES SECTION -->
-  <section id="shop" class="section section-alt">
-    <div class="container">
-      <div class="section-title">
-        <span class="section-subtitle">MAKE YOUR OWN COMBO</span>
-        <h2>Shop By Category</h2>
-        <div class="title-underline"></div>
-      </div>
+            <!-- ITEM -->
 
-      <div class="category-grid">
-        @for (category of categories; track category.name) {
-          <div class="category-card">
-            <div class="category-header-box">
-              <img [src]="category.image" [alt]="category.name" class="category-banner-img">
-              <div class="category-overlay">
-                <h3>{{ category.name }}</h3>
-                <span class="per-kg-badge">PRICE PER KG / PACK</span>
-              </div>
+            <div class="col-name">
+
+              <strong>
+                {{ item.name }}
+              </strong>
+
+              <span class="item-type-tag">
+                {{ item.type }}
+              </span>
+
             </div>
 
-            <div class="product-list">
-              @for (product of category.products; track product.name) {
-                <div class="product-row">
-                  <div class="product-info">
-                    <span class="product-name">{{ product.name }}</span>
-                    <span class="product-unit">R{{ product.price }} / {{ product.unit }}</span>
-                  </div>
-                  <button class="btn-add-item" (click)="addToCart(product, 'product')">
-                    + Add
-                  </button>
-                </div>
+
+            <!-- PRICE -->
+
+            <div class="col-price">
+
+              R{{ item.price | number:'1.2-2' }}
+
+              @if (item.unit) {
+
+                /{{ item.unit }}
+
               }
+
             </div>
+
+
+            <!-- QUANTITY -->
+
+            <div class="col-qty">
+
+              <button
+                type="button"
+                (click)="decreaseQuantity(item)"
+                aria-label="Decrease quantity"
+              >
+
+                -
+
+              </button>
+
+              <span>
+                {{ item.quantity }}
+              </span>
+
+              <button
+                type="button"
+                (click)="increaseQuantity(item)"
+                aria-label="Increase quantity"
+              >
+
+                +
+
+              </button>
+
+            </div>
+
+
+            <!-- ITEM TOTAL -->
+
+            <div class="col-total">
+
+              R{{ (item.price * item.quantity) | number:'1.2-2' }}
+
+            </div>
+
+
+            <!-- REMOVE -->
+
+            <div class="col-remove">
+
+              <button
+                type="button"
+                class="btn-remove"
+                (click)="removeFromCart(item)"
+                aria-label="Remove item"
+              >
+
+                ×
+
+              </button>
+
+            </div>
+
           </div>
+
         }
-      </div>
-    </div>
-  </section>
 
-  <!-- ORDER SUMMARY SECTION -->
-  <section id="order-summary" class="section">
-    <div class="container">
-      <div class="section-title">
-        <span class="section-subtitle">YOUR CART</span>
-        <h2>Order Summary</h2>
-        <div class="title-underline"></div>
       </div>
 
-      <div class="order-box">
-        @if (cart.length === 0) {
-          <div class="empty-cart-state">
-            <p>Your order is currently empty.</p>
-            <button class="btn-primary" (click)="scrollToSection('shop')">Browse Products</button>
+
+      <!-- ================================================= -->
+      <!-- CART TOTALS -->
+      <!-- ================================================= -->
+
+      <div class="cart-totals">
+
+        <div class="total-row">
+
+          <span>
+            Subtotal
+          </span>
+
+          <span>
+
+            R{{ cartSubtotal | number:'1.2-2' }}
+
+          </span>
+
+        </div>
+
+
+        <div class="total-row">
+
+          <span>
+            Delivery Fee (Joburg North)
+          </span>
+
+          <span>
+
+            R{{ deliveryFee | number:'1.2-2' }}
+
+          </span>
+
+        </div>
+
+
+        <div class="total-row grand-total">
+
+          <span>
+            Total to Pay
+          </span>
+
+          <span>
+
+            R{{ cartTotal | number:'1.2-2' }}
+
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <!-- ================================================= -->
+      <!-- DELIVERY INFORMATION -->
+      <!-- ================================================= -->
+
+      <div class="checkout-form-section">
+
+        <h3>
+          1. Delivery Information
+        </h3>
+
+        <p class="form-hint">
+
+          Your delivery details will be sent
+          to our WhatsApp delivery team.
+
+        </p>
+
+
+        <!-- VALIDATION -->
+
+        @if (showValidationError) {
+
+          <div class="validation-alert">
+
+            ⚠️ Please fill in all required
+            delivery fields
+            (Name, Phone, Address, Suburb).
+
           </div>
-        } @else {
-          <div class="cart-table">
-            <div class="cart-header">
-              <span>Item</span>
-              <span>Price</span>
-              <span>Quantity</span>
-              <span>Total</span>
-              <span></span>
+
+        }
+
+
+        <!-- PAYMENT ERROR -->
+
+        @if (paymentError) {
+
+          <div class="validation-alert">
+
+            ⚠️ {{ paymentError }}
+
+          </div>
+
+        }
+
+
+        <div class="form-grid">
+
+
+          <!-- NAME -->
+
+          <div class="form-group">
+
+            <label>
+              Full Name *
+            </label>
+
+            <input
+              type="text"
+              [(ngModel)]="customerName"
+              placeholder="e.g. John Doe"
+            >
+
+          </div>
+
+
+          <!-- PHONE -->
+
+          <div class="form-group">
+
+            <label>
+              Mobile / WhatsApp Number *
+            </label>
+
+            <input
+              type="tel"
+              [(ngModel)]="customerPhone"
+              placeholder="e.g. 082 123 4567"
+            >
+
+          </div>
+
+
+          <!-- ADDRESS -->
+
+          <div class="form-group full-width">
+
+            <label>
+              Street Address & Building *
+            </label>
+
+            <input
+              type="text"
+              [(ngModel)]="deliveryAddress"
+              placeholder="e.g. 123 Main Road, Apt 4B"
+            >
+
+          </div>
+
+
+          <!-- SUBURB -->
+
+          <div class="form-group">
+
+            <label>
+              Suburb (Joburg North) *
+            </label>
+
+            <select
+              [(ngModel)]="suburb"
+            >
+
+              <option
+                value=""
+                disabled
+              >
+
+                Select Suburb
+
+              </option>
+
+              @for (
+                sub of joburgSuburbs;
+                track sub
+              ) {
+
+                <option
+                  [value]="sub"
+                >
+
+                  {{ sub }}
+
+                </option>
+
+              }
+
+            </select>
+
+          </div>
+
+
+          <!-- NOTES -->
+
+          <div class="form-group">
+
+            <label>
+              Special Instructions (Optional)
+            </label>
+
+            <input
+              type="text"
+              [(ngModel)]="deliveryNotes"
+              placeholder="e.g. Leave at gate with security"
+            >
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- ================================================= -->
+      <!-- PAYMENT METHOD -->
+      <!-- ================================================= -->
+
+      <div class="checkout-payment-section">
+
+        <h3>
+          2. Select Payment Method
+        </h3>
+
+
+        <div class="payment-options">
+
+
+          <!-- ================================================= -->
+          <!-- iKHOKHA -->
+          <!-- ================================================= -->
+
+          <label
+            class="payment-card"
+            [class.selected]="
+              selectedPaymentMethod === 'ikhokha'
+            "
+          >
+
+            <div class="payment-card-header">
+
+              <input
+                type="radio"
+                name="paymentMethod"
+                value="ikhokha"
+                [(ngModel)]="selectedPaymentMethod"
+              >
+
+              <strong>
+                iKhokha Pay
+                (Pay Online Now)
+              </strong>
+
+              <span class="badge-recommended">
+                INSTANT
+              </span>
+
             </div>
 
-            @for (item of cart; track item.name) {
-              <div class="cart-row">
-                <div class="col-name">
-                  <strong>{{ item.name }}</strong>
-                  <span class="item-type-tag">{{ item.type }}</span>
-                </div>
-                <div class="col-price">
-                  R{{ item.price }} {{ item.unit ? '/' + item.unit : '' }}
-                </div>
-                <div class="col-qty">
-                  <button (click)="decreaseQuantity(item)">-</button>
-                  <span>{{ item.quantity }}</span>
-                  <button (click)="increaseQuantity(item)">+</button>
-                </div>
-                <div class="col-total">
-                  R{{ item.price * item.quantity }}
-                </div>
-                <div class="col-remove">
-                  <button class="btn-remove" (click)="removeFromCart(item)">×</button>
-                </div>
+
+            <p class="payment-desc">
+
+              Pay securely online using
+              <strong>
+                Cards, Instant EFT,
+                Apple Pay, or Google Pay
+              </strong>.
+
+              <br>
+
+              <strong>
+                Amount to pay:
+                R{{ cartTotal | number:'1.2-2' }}
+              </strong>
+
+            </p>
+
+          </label>
+
+
+          <!-- ================================================= -->
+          <!-- WHATSAPP -->
+          <!-- ================================================= -->
+
+          <label
+            class="payment-card"
+            [class.selected]="
+              selectedPaymentMethod === 'whatsapp'
+            "
+          >
+
+            <div class="payment-card-header">
+
+              <input
+                type="radio"
+                name="paymentMethod"
+                value="whatsapp"
+                [(ngModel)]="selectedPaymentMethod"
+              >
+
+              <strong>
+                Order via WhatsApp
+                (Pay Later)
+              </strong>
+
+            </div>
+
+
+            <p class="payment-desc">
+
+              Arrange payment on delivery
+              (Cash / Speedpoint) or via
+              direct WhatsApp bank transfer.
+
+            </p>
+
+          </label>
+
+        </div>
+
+      </div>
+
+
+      <!-- ================================================= -->
+      <!-- CHECKOUT BUTTONS -->
+      <!-- ================================================= -->
+
+      <div class="cart-actions">
+
+
+        <!-- ================================================= -->
+        <!-- iKHOKHA CHECKOUT -->
+        <!-- ================================================= -->
+
+        @if (
+          selectedPaymentMethod === 'ikhokha'
+        ) {
+
+          <div class="ikhokha-checkout-wrapper">
+
+
+            <!-- ================================================= -->
+            <!-- iKHOKHA PAYMENT BUTTON -->
+            <!-- ================================================= -->
+
+            <div class="ikhokha-button-wrapper">
+
+              <div style="width: 160px">
+
+                <h6
+                  style="
+                    margin: 10px 0;
+                    padding: 0;
+                    font-family: roboto-regular, sans-serif;
+                    font-size: 14px;
+                    color: #1d1d1b;
+                  "
+                >
+
+                  4Ways Online
+
+                </h6>
+                
+                <button
+                  type="button"
+                  (click)="
+                    whatsappOrderSentForIkhokha
+                      ? payWithIkhokha()
+                      : sendIkhokhaOrderToWhatsApp()
+                  "
+                  [disabled]="
+                    isProcessingPayment
+                    || cart.length === 0
+                  "
+                  style="
+                    overflow: hidden;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 100%;
+                    min-height: 48px;
+                    padding: 0 10px;
+                    background: #FFCD00;
+                    color: #1D1D1B;
+                    border: 1px solid #e5e5e5;
+                    border-radius: 16px;
+                    font-family: roboto-medium, sans-serif;
+                    font-weight: 700;
+                    cursor: pointer;
+                  "
+                >
+
+                  @if (isProcessingPayment) {
+
+                    Processing...
+
+                  }
+
+                  @else if (!whatsappOrderSentForIkhokha) {
+
+                    SEND DETAILS TO WHATSAPP
+
+                  }
+
+                  @else {
+
+                    CONTINUE TO iKHOKHA
+                    <br>
+                    R{{ cartTotal | number:'1.2-2' }}
+
+                  }
+
+                </button>
+
+                
+
+                <h6
+                  style="
+                    margin: 5px 0;
+                    padding: 0;
+                    font-size: 8px;
+                    font-family: roboto-regular, sans-serif;
+                    text-align: center;
+                  "
+                >
+
+                  Powered by iKhokha
+
+                </h6>
+
               </div>
-            }
+
+            </div>
+
+
+            <!-- ================================================= -->
+            <!-- PAYMENT INFORMATION -->
+            <!-- ================================================= -->
+
+            <div class="ikhokha-payment-summary">
+
+              <p>
+
+                <strong>
+                  Amount to pay:
+                </strong>
+
+                R{{ cartTotal | number:'1.2-2' }}
+
+              </p>
+
+          <p class="ikhokha-checkout-note">
+            
+          @if (!whatsappOrderSentForIkhokha) {
+
+            Your complete order and delivery
+            details will first be sent to WhatsApp.
+            After sending the WhatsApp message,
+            return here to continue with your
+            secure iKhokha payment.
+
+          }
+
+          @else {
+
+            Your order details have been prepared
+            for WhatsApp. Please send the WhatsApp
+            message, then click below to continue
+            to the secure iKhokha payment page.
+
+          }
+
+        </p>
+
+            </div>
+
           </div>
 
-          <div class="cart-totals">
-            <div class="total-row">
-              <span>Subtotal</span>
-              <span>R{{ cartSubtotal }}</span>
-            </div>
-            <div class="total-row">
-              <span>Delivery Fee (Joburg North)</span>
-              <span>R{{ deliveryFee }}</span>
-            </div>
-            <div class="total-row grand-total">
-              <span>Estimated Total</span>
-              <span>R{{ cartTotal }}</span>
-            </div>
-          </div>
-
-          <div class="cart-actions">
-            <button class="btn-whatsapp-checkout" (click)="orderOnWhatsApp()">
-              ORDER ON WHATSAPP (077 203 2201)
-            </button>
-            <button class="btn-clear-cart" (click)="clearOrder()">CLEAR ORDER</button>
-          </div>
         }
+
+
+        <!-- ================================================= -->
+        <!-- WHATSAPP CHECKOUT -->
+        <!-- ================================================= -->
+
+        @else {
+
+          <button
+            type="button"
+            class="btn-checkout-whatsapp"
+            (click)="submitOrder()"
+            [disabled]="cart.length === 0"
+          >
+
+            SEND ORDER & ADDRESS
+            TO WHATSAPP
+
+            <br>
+
+            TOTAL:
+            R{{ cartTotal | number:'1.2-2' }}
+
+          </button>
+
+        }
+
+
+        <!-- ================================================= -->
+        <!-- CLEAR CART -->
+        <!-- ================================================= -->
+
+        <button
+          type="button"
+          class="btn-clear-cart"
+          (click)="clearOrder()"
+        >
+
+          CLEAR ORDER
+
+        </button>
+
       </div>
-    </div>
+
+    }
+
+  </div>
+
+</div>
+```
+
   </section>
+
 </main>
 
+<!-- ========================================================= -->
+
+<!-- FOOTER -->
+
+<!-- ========================================================= -->
+
 <footer class="site-footer">
+
   <div class="container footer-content">
-    <div>
-      <div class="logo">
-        <div class="logo-badge">4WAYS</div>
-        <div class="logo-text">
-          <span class="logo-main">ONLINE BUTCHERY</span>
-        </div>
-      </div>
-      <p class="footer-tagline">Fresh Meat, Fresh Produce, Delivered to You!</p>
+
+```
+<!-- FOOTER LOGO -->
+
+<div>
+
+  <div class="logo">
+
+    <div class="logo-badge">
+      4WAYS
     </div>
 
-    <div class="footer-info">
-      <h4>Order & Delivery</h4>
-      <p>Delivery Days: Saturday & Sunday</p>
-      <p>Delivery Fee: R40 Across Joburg North</p>
-      <p>WhatsApp: 077 203 2201</p>
+    <div class="logo-text">
+
+      <span class="logo-main">
+        ONLINE BUTCHERY
+      </span>
+
     </div>
+
   </div>
+
+
+  <p class="footer-tagline">
+
+    Fresh Meat, Fresh Produce,
+    Delivered to You!
+
+  </p>
+
+</div>
+
+
+<!-- FOOTER INFORMATION -->
+
+<div class="footer-info">
+
+  <h4>
+    Order & Delivery
+  </h4>
+
+  <p>
+    Delivery Days:
+    Saturday & Sunday
+  </p>
+
+  <p>
+    Delivery Fee:
+    R40 Across Joburg North
+  </p>
+
+  <p>
+    WhatsApp:
+    077 203 2201
+  </p>
+
+</div>
+```
+
+  </div>
+
+  <!-- FOOTER BOTTOM -->
 
   <div class="footer-bottom">
-    <div class="container">
-      <p>© 2026 Fourways Butchery. WE DELIVER • YOU RELAX • WE CARE</p>
-    </div>
+
+```
+<div class="container">
+
+  <p>
+
+    © 2026 Fourways Butchery.
+    WE DELIVER • YOU RELAX • WE CARE
+
+  </p>
+
+</div>
+```
+
   </div>
+
 </footer>
