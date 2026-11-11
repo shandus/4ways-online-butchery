@@ -137,7 +137,7 @@ export class App {
     {
       name: 'Family Combo',
 
-      price: 1378,
+      price: 1398,
 
       image:
         'https://images.unsplash.com/photo-1558030006-450675393462?auto=format&fit=crop&w=1000&q=80',
@@ -156,7 +156,7 @@ export class App {
     {
       name: 'Lone Combo',
 
-      price: 782,
+      price: 792,
 
       image:
         'https://images.unsplash.com/photo-1600891964092-4316c288032e?auto=format&fit=crop&w=1000&q=80',
@@ -190,7 +190,7 @@ export class App {
       products: [
 
         { name: 'Brisket', price: 110, unit: 'kg' },
-        { name: 'Wors', price: 105, unit: 'kg' },
+        { name: 'Wors', price: 110, unit: 'kg' },
         { name: 'Beef Stew', price: 105, unit: 'kg' },
         { name: 'Lean Mince', price: 133, unit: 'kg' },
         { name: 'Chuck', price: 127, unit: 'kg' },
@@ -235,7 +235,7 @@ export class App {
         { name: 'Chicken Drumsticks', price: 70, unit: 'kg' },
         {
           name: 'Full Brine Free Frozen Chicken',
-          price: 90,
+          price: 95,
           unit: 'each'
         }
 
